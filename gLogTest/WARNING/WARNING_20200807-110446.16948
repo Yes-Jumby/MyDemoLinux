@@ -1,0 +1,7 @@
+Log file created at: 2020/08/07 11:04:46
+Running on machine: luyc-desktop
+Log line format: [IWEF]yyyymmdd hh:mm:ss.uuuuuu threadid file:line] msg
+W20200807 11:04:46.248049 16948 One.cpp:7] One constructed WARNING
+E20200807 11:04:46.249176 16948 One.cpp:8] One constructed ERROR
+W20200807 11:04:46.249769 16948 Two.cpp:7] Two constructed WARNING
+E20200807 11:04:46.249882 16948 Two.cpp:8] Two constructed ERROR

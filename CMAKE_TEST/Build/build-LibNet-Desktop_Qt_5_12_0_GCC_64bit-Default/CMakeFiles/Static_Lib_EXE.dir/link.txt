@@ -1,0 +1,1 @@
+/usr/bin/g++     CMakeFiles/Static_Lib_EXE.dir/testBubble.cpp.o  -o "/home/ubuntu/Documents/work/my first project/CMAKE_TEST/Bin/Static_Lib_EXE" -Wl,-rpath,"/home/ubuntu/Documents/work/my first project/CMAKE_TEST/Lib" "/home/ubuntu/Documents/work/my first project/CMAKE_TEST/Lib/libStaticBubble.so" 

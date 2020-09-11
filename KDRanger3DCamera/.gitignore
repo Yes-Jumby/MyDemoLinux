@@ -1,0 +1,9 @@
+*.user
+*.user.*
+*.zip
+*.rar
+*.via
+*.tmp
+*.err
+*.txt
+*.sh

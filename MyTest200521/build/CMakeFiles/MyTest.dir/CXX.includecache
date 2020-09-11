@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ubuntu/Documents/work/my first project/MyTest200521/MyTest.cpp
+ctime
+-
+unistd.h
+-
+fstream
+-
+set
+-
+string
+-
+sys/stat.h
+-
+sys/types.h
+-
+iostream
+-
+

@@ -1,0 +1,1 @@
+/usr/bin/g++ -fPIC   -shared -Wl,-soname,libStaticBubble.so -o "/home/ubuntu/Documents/work/my first project/CMAKE_TEST/Lib/libStaticBubble.so" CMakeFiles/StaticBubble.dir/StaticBubble.cpp.o 

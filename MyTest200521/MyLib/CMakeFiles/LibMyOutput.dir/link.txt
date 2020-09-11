@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/LibMyOutput.dir/test.cpp.o  -o LibMyOutput libLibOutput.a 

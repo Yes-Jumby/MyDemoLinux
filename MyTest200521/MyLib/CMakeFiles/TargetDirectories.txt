@@ -1,0 +1,4 @@
+/home/ubuntu/Documents/work/my first project/MyTest200521/MyLib/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/Documents/work/my first project/MyTest200521/MyLib/CMakeFiles/edit_cache.dir
+/home/ubuntu/Documents/work/my first project/MyTest200521/MyLib/CMakeFiles/LibMyOutput.dir
+/home/ubuntu/Documents/work/my first project/MyTest200521/MyLib/CMakeFiles/LibMyOutput1.dir

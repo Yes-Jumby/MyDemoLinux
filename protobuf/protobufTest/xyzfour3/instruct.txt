@@ -1,0 +1,26 @@
+protoc -I=./ --cpp_out=./ model.proto
+
+
+package cn.vicky.model.seri;
+
+message MyData {
+    required uint64 timestamp = 1[default = 0];
+    required double x = 2[default = -1.0];
+    required double y = 3[default = -1.0];
+    required double z = 4[default = -1.0];
+    required double qx = 5[default = -1.0];
+    required double qy = 6[default = -1.0];
+    required double qz = 7[default = -1.0];
+    required double qw = 8[default = -1.0];
+}
+
+message User {
+    required uint64 timestamp = 1;
+    required double x = 2;
+    required double y = 3;
+    required double z = 4;
+    required double qx = 5;
+    required double qy = 6;
+    required double qz = 7;
+    required double qw = 8;
+}

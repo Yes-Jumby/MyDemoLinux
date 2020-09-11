@@ -1,0 +1,1 @@
+/usr/bin/g++  -O3 -DNDEBUG   CMakeFiles/Static_Lib_EXE.dir/testBubble.cpp.o  -o "/home/ubuntu/Documents/work/my first project/CMAKE_TEST/Bin/Release/Static_Lib_EXE" "/home/ubuntu/Documents/work/my first project/CMAKE_TEST/Lib/Release/libStaticBubble.a" 

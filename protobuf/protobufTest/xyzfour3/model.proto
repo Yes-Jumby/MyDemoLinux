@@ -1,0 +1,14 @@
+syntax = "proto3";
+package hello;
+
+message MyData {
+    uint64 timestamp = 1;
+    double x = 2;
+    double y = 3;
+    double z = 4;
+    double qx = 5;
+    double qy = 6;
+    double qz = 7;
+    double qw = 8;
+    string username = 9;
+}

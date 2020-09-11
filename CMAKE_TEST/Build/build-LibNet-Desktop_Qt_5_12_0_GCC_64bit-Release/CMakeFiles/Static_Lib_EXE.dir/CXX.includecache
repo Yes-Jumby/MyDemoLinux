@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ubuntu/Documents/work/my first project/CMAKE_TEST/LibNet/StaticBubble.h
+
+/home/ubuntu/Documents/work/my first project/CMAKE_TEST/LibNet/testBubble.cpp
+iostream
+-
+StaticBubble.h
+-
+
