@@ -15,3 +15,5 @@
 *.bsc
 *.aps
 *.opt
+*.o
+*.stash
