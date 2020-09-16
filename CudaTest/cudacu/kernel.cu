@@ -73,9 +73,11 @@ void getDeviceInfo()
         cudaGetDeviceProperties(&prop,i);
         printf( "device name :%s   compute capability:[%d] = %d   isintegrated:%d multiProcessorCount:%d maxThreadsPerMultiProcessor:%d\n",
                 prop.name,prop.major, prop.minor,prop.integrated,prop.multiProcessorCount,prop.maxThreadsPerMultiProcessor);
-        printf( "canUseHostPointerForRegisteredMem:%d  directManagedMemAccessFromHost:%d  \n",
+        printf( "canUseHostPointerForRegisteredMem:%d  directManagedMemAccessFromHost:%d  warpSize:%d maxThreadsPerBlock:%d\n",
                 prop.canUseHostPointerForRegisteredMem,
-                prop.directManagedMemAccessFromHost);
+                prop.directManagedMemAccessFromHost,
+                prop.warpSize,
+                prop.maxThreadsPerBlock);
     }
 }
 
