@@ -16,11 +16,11 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 signals:
-    void signalRefresh(const std::string &path);
+    void signalRefresh(const std::string &str);
     void myTestSignal(const QString &str);
 private slots:
     void on_mysignal(const QString &str);
-    void on_signalRefresh(const std::string &path);
+    void on_signalRefresh(const std::string &str);
 private:
     CEmitSignalOne m_EmitSignalOne;
     CEmitSignalTwo m_EmitSignalTwo;

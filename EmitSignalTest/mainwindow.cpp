@@ -7,16 +7,16 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     //qRegisterMetaType<QString>("QT::QString");
-    connect(&m_EmitSignalOne,SIGNAL(myTestSignal(const QString &)),this,SLOT(on_mysignal(const QString &)));
-    connect(&m_EmitSignalTwo,SIGNAL(myTestSignal(const QString &)),this,SLOT(on_mysignal(const QString &)));
-    connect(this,SIGNAL(myTestSignal(const QString &)),this,SLOT(on_mysignal(const QString &)));
+    connect(&m_EmitSignalOne,SIGNAL(myTestSignal(const QString &str)),this,SLOT(on_mysignal(const QString &str)));
+    connect(&m_EmitSignalTwo,SIGNAL(myTestSignal(const QString &str)),this,SLOT(on_mysignal(const QString &str)));
+    connect(this,SIGNAL(myTestSignal(const QString &str)),this,SLOT(on_mysignal(const QString &str)));
     m_EmitSignalOne.emitAsignal();
     m_EmitSignalTwo.emitAsignal();
     emit myTestSignal("MainWindow");
 
     //qRegisterMetaType<std::string>("std::string");
-    connect(this,SIGNAL(signalRefresh(const std::string &)),
-            this,SLOT(on_signalRefresh(const std::string &)));
+    connect(this,SIGNAL(signalRefresh(const std::string &str)),
+            this,SLOT(on_signalRefresh(const std::string &str)));
 
     emit signalRefresh("hehe");
 }
