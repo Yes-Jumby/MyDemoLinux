@@ -1,0 +1,7 @@
+%YAML:1.0
+---
+MYMAXTRIS: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: u
+   data: [ 1, 0, 0, 0, 1, 0, 0, 0, 1 ]

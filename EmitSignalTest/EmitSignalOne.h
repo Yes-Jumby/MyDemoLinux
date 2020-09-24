@@ -4,7 +4,6 @@
 
 class CEmitSignalOne : public CEmitSignalBase
 {
-    Q_OBJECT
 public:
     CEmitSignalOne();
     virtual void emitAsignal();
