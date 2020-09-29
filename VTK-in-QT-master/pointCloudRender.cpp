@@ -124,6 +124,7 @@ void PointCloudRender::init(vtkSmartPointer<vtkRenderWindow> renderwind)
     m_dataMapper->SetInputConnection(m_elevationFilter->GetOutputPort());
 
     m_actor = vtkSmartPointer<vtkActor>::New();
+    m_actor->GetProperty()->SetPointSize(2);
     m_actor->SetMapper(m_dataMapper);
 
     m_renderer = vtkSmartPointer<vtkRenderer>::New();
@@ -176,10 +177,10 @@ void PointCloudRender::init(vtkSmartPointer<vtkRenderWindow> renderwind)
 //    m_style->unitizeTextActor(m_textActor);
 
 //    m_renderwindIt = vtkSmartPointer<vtkRenderWindowInteractor>::New();
-
 //    m_renderwindIt->SetInteractorStyle(m_style);
-//    m_renderwindIt->SetRenderWindow(m_renderwind);
 //    m_renderwind->SetInteractor(m_renderwindIt);
+//    m_renderwindIt->SetRenderWindow(m_renderwind);
+
 //    m_renderwindIt->Initialize();
 //    m_renderwindIt->Start();
 
@@ -209,7 +210,7 @@ void PointCloudRender::show()
     m_dataMapper->SetInputConnection(m_elevationFilter->GetOutputPort());
 
     m_actor->SetMapper(m_dataMapper);
-    m_actor->GetProperty()->SetPointSize(2);
+
 
     m_renderer->AddActor(m_actor);
 
@@ -225,6 +226,7 @@ void PointCloudRender::show()
     ViewPositiveY(m_renderer);
     m_renderwind->AddRenderer(m_renderer);
     m_renderwind->Render();
+
 }
 
 void PointCloudRender::ViewDirection(vtkRenderer *renderer,
