@@ -11,8 +11,8 @@ MainView::MainView(QWidget *parent) :
 {
     ui->setupUi(this);
 
-//    // This creates a polygonal cylinder model with eight circumferential facets
-//    // (i.e, in practice an octagonal prism).
+    // This creates a polygonal cylinder model with eight circumferential facets
+    // (i.e, in practice an octagonal prism).
 //    vtkSmartPointer<vtkCylinderSource> cylinder =
 //      vtkSmartPointer<vtkCylinderSource>::New();
 //    cylinder->SetResolution(8);
@@ -116,52 +116,54 @@ MainView::~MainView()
 #include <QTime>
 void MainView::on_pushButton_clicked()
 {
-    qsrand(QTime(0,0,0).secsTo((QTime::currentTime())));
-    float x,y,z;
-    std::vector<std::vector<float> > pts;
-    int randint = qrand()%100;
-    std::cout<<"randint:"<<randint<<std::endl;
-    for(int i =-100 ;i<=100;i++)
+    for(int i = 0;i<10;i++)
     {
-        x =qrand()%randint;y=qrand()%randint;z=qrand()%randint;
-        std::vector<float> pts_xyz;
-        pts_xyz.push_back(x);
-        pts_xyz.push_back(y);
-        pts_xyz.push_back(z);
-        pts.push_back(pts_xyz);
+        qsrand(QTime(0,0,0).secsTo((QTime::currentTime())));
+        float x,y,z;
+        std::vector<std::vector<float> > pts;
+        int randint = qrand()%100;
+        std::cout<<"randint:"<<randint<<std::endl;
+        for(int i =-100 ;i<=100;i++)
+        {
+            x =qrand()%randint;y=qrand()%randint;z=qrand()%randint;
+            std::vector<float> pts_xyz;
+            pts_xyz.push_back(x);
+            pts_xyz.push_back(y);
+            pts_xyz.push_back(z);
+            pts.push_back(pts_xyz);
 
+        }
+
+        m_ren.LoadPoints(pts);
+        m_ren.show();
+        std::cout << "nan :" << std::isnan(std::nanf("1"))<< std::endl;
+
+        //    qsrand(QTime(0,0,0).secsTo((QTime::currentTime())));
+        //    float x,y,z;
+        //    x = std::nanf("1");
+        //    std::vector<float> pts_xyz;
+        //    int randint = qrand()%100;
+        //    std::cout<<"randint:"<<randint<<std::endl;
+        //    for(int i =-100 ;i<=100;i++)
+        //    {
+        //        x =qrand()%randint;y=qrand()%randint;z=qrand()%randint;
+        //        pts_xyz.push_back(std::nanf("1"));
+        //        pts_xyz.push_back(std::nanf("1"));
+        //        pts_xyz.push_back(std::nanf("1"));
+
+        //    }
+        //    for(int i =0 ;i<10;i++)
+        //    {
+        //        x =qrand()%randint;y=qrand()%randint;z=qrand()%randint;
+
+
+        //        pts_xyz.push_back(x);
+        //        pts_xyz.push_back(y);
+        //        pts_xyz.push_back(z);
+
+        //    }
+
+        //    m_ren.LoadPoints(pts_xyz.data(),211);
+        //    m_ren.show();
     }
-
-    m_ren.LoadPoints(pts);
-    m_ren.show();
-    std::cout << "nan :" << std::isnan(std::nanf("1"))<< std::endl;
-
-
-//    qsrand(QTime(0,0,0).secsTo((QTime::currentTime())));
-//    float x,y,z;
-//    x = std::nanf("1");
-//    std::vector<float> pts_xyz;
-//    int randint = qrand()%100;
-//    std::cout<<"randint:"<<randint<<std::endl;
-//    for(int i =-100 ;i<=100;i++)
-//    {
-//        x =qrand()%randint;y=qrand()%randint;z=qrand()%randint;
-//        pts_xyz.push_back(std::nanf("1"));
-//        pts_xyz.push_back(std::nanf("1"));
-//        pts_xyz.push_back(std::nanf("1"));
-
-//    }
-//    for(int i =0 ;i<10;i++)
-//    {
-//        x =qrand()%randint;y=qrand()%randint;z=qrand()%randint;
-
-
-//        pts_xyz.push_back(x);
-//        pts_xyz.push_back(y);
-//        pts_xyz.push_back(z);
-
-//    }
-
-//    m_ren.LoadPoints(pts_xyz.data(),211);
-//    m_ren.show();
 }
