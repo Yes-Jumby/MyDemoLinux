@@ -172,15 +172,16 @@ void PointCloudRender::init(vtkSmartPointer<vtkRenderWindow> renderwind)
     m_scalarBar->SetTextPositionToSucceedScalarBar();
     m_renderer->AddActor2D(m_scalarBar);
 
-//    vtkSmartPointer<PointPickerInteractorStyle> m_style;
-//    m_style = vtkSmartPointer<PointPickerInteractorStyle>::New();
-//    m_style->unitizeTextActor(m_textActor);
+    vtkSmartPointer<PointPickerInteractorStyle> m_style;
+    m_style = vtkSmartPointer<PointPickerInteractorStyle>::New();
+    m_style->unitizeTextActor(m_textActor);
 
-//    m_renderwindIt = vtkSmartPointer<vtkRenderWindowInteractor>::New();
-//    m_renderwindIt->SetInteractorStyle(m_style);
-//    m_renderwind->SetInteractor(m_renderwindIt);
-//    m_renderwindIt->SetRenderWindow(m_renderwind);
+    m_renderwind->GetInteractor()->SetInteractorStyle(m_style);
+    //m_renderwindIt = vtkSmartPointer<vtkRenderWindowInteractor>::New();
+    //m_renderwindIt->SetInteractorStyle(m_style);
+    //m_renderwindIt->SetRenderWindow(m_renderwind);
 
+    //    m_renderwind->SetInteractor(m_renderwindIt);
 //    m_renderwindIt->Initialize();
 //    m_renderwindIt->Start();
 
