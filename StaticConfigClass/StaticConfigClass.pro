@@ -27,13 +27,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    ConfigForKDVisualInspect.cpp
+    KDConfig.cpp
 
 HEADERS += \
         mainwindow.h \
-    ConfigForKDVisualInspect.h
+    KDConfig.h
 
 FORMS += \
         mainwindow.ui
 
-LIBS +=  /usr/local/lib/libopencv_core.so
+#LIBS +=  /usr/local/lib/libopencv_core.so
