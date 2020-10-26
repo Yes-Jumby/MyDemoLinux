@@ -2,8 +2,6 @@
 #define KDCONFIG_H
 #include <memory>
 #include <QSettings>
-#include <iostream>
-#include <typeinfo>
 class CKDConfig
 {
 public:

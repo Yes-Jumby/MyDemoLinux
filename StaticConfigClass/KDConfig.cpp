@@ -1,7 +1,6 @@
 ﻿#include "KDConfig.h"
 
-void CKDConfig::setParameterFile( const QString& filename )
-{
+void CKDConfig::setParameterFile( const QString& filename ) {
     if ( config_ == nullptr ) {
         config_ = std::shared_ptr<CKDConfig>(new CKDConfig);
     }

@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    CKDConfig::setParameterFile("/home/innovation-2/Documents/Ranger3/hello1.ini");
+    CKDConfig::setParameterFile("../../hello1.ini");
     std::cout<<"a:"<<CKDConfig::getValue<int>("a")<<std::endl;
     std::cout<<"b:"<<CKDConfig::getValue<int>("b")<<std::endl;
     std::cout<<"c:"<<CKDConfig::getValue<QString>("c").toStdString()<<std::endl;
