@@ -36,10 +36,10 @@ HEADERS += \
 FORMS += \
         mainwindow.ui
 
-
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
 INCLUDEPATH +=/opt/Qt5.12.0/include/QtPropertyBrowser
 LIBS += /opt/Qt5.12.0/lib/libQtPropertyBrowser.so
+
+
+INCLUDEPATH += $$PWD/../../KDVisualInspect/Lib/ubuntu-x64/Inc
+#DEPENDPATH += $$PWD/../Lib/ubuntu-x64/Inc
+LIBS += -L$$PWD/../../KDVisualInspect/Lib/ubuntu-x64/Bin/ -lGrabberForCamera

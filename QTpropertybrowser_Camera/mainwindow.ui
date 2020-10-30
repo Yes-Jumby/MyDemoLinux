@@ -24,7 +24,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="CQtTreePropertyBrowserForCamera" name="widget_2" native="true">
+   <widget class="CQtTreePropertyBrowserForCamera" name="widget_camera" native="true">
     <property name="geometry">
      <rect>
       <x>110</x>

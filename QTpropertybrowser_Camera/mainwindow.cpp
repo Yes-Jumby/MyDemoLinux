@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
         QtVariantPropertyManager *variantManager = new QtVariantPropertyManager();
 
-QString strName;
+        QString strName;
 
         int i = 0;
         QtProperty *topItem = variantManager->addProperty(QtVariantPropertyManager::groupTypeId(),
@@ -151,6 +151,9 @@ QString strName;
         connect(variantManager, SIGNAL(valueChanged(QtProperty *, const QVariant &)),
                     this, SLOT(on_valueChanged(QtProperty *, const QVariant &)));
     //ui->widget->setEnabled(false);
+        qDebug()<<QString("main:: Frame lost:%1").arg(100);
+
+        ui->
 
 }
 
