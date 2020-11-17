@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QDate>
 #include <QDebug>
+#include "DlgSystemParam.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -152,13 +153,40 @@ MainWindow::MainWindow(QWidget *parent) :
                     this, SLOT(on_valueChanged(QtProperty *, const QVariant &)));
     //ui->widget->setEnabled(false);
         qDebug()<<QString("main:: Frame lost:%1").arg(100);
+        qDebug()<<"size of cloud3d:"<<sizeof(Cloud3D);
 
-        ui->
+        m_pGrabberForCamera = new CGrabberForCamera();
+        s_GrabberInitParam sGrabberInitParam;
+    //    sGrabberInitParam.iImageWidth = m_iImageWidth;
+    //    sGrabberInitParam.iImageHeight = m_iImageHeight;
+    //    sGrabberInitParam.iImageHeight3D = m_iImageHeight3D;
+        sGrabberInitParam.strLogFilesPath = "../../KDVisualInspect/Data/log/";
+        sGrabberInitParam.strCTIFilesPath = "../../KDVisualInspect/Config/GenTL producer/linux_arm64/sickGenTLProducer.cti";
+        sGrabberInitParam.isShowLOGInCMD = false;
+        sGrabberInitParam.isWriteLOG = false;
+        sGrabberInitParam.isUsingEncoder = false;
 
+        sGrabberInitParam.strDeviceIPorMAC = "192.168.1.91";"192.168.1.91";"169.254.44.197";;
+        sGrabberInitParam.isUsingIP = true;
+        sGrabberInitParam.strCSVFilesPath = "../../KDVisualInspect/Config/Camera3D.csv";
+        sGrabberInitParam.strCalibXMLPath = "../../KDVisualInspect/Config/CalibrationResult.json";
+
+        sGrabberInitParam.strDataSavePath="../../KDVisualInspect/Data";;
+        sGrabberInitParam.iBufferCount = 10;
+        sGrabberInitParam.e_ImageType = 5;
+
+        sGrabberInitParam.fScaleY = 1.0;
+
+        //sGrabberInitParam.pCallBackFunc = std::bind(&MainWindow::ImgCallBack,this,_1);
+        m_pGrabberForCamera->Init(sGrabberInitParam);
+
+        //ui->widget_camera->registerCameraPointer(m_pGrabberForCamera);
 }
 
 MainWindow::~MainWindow()
 {
+    m_pGrabberForCamera->SaveToCSV("../../KDVisualInspect/Config/Camera3D.csv");
+    delete m_pGrabberForCamera;
     delete ui;
 }
 void MainWindow::on_valueChanged(QtProperty *property, const QVariant &value)
@@ -169,4 +197,10 @@ void MainWindow::on_valueChanged(QtProperty *property, const QVariant &value)
         if(s == "TriggerMode_TriggerSelector_LineStart") {
             qDebug()<<"hello";
         }
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    CDlgSystemParam *dlg = new CDlgSystemParam(0,m_pGrabberForCamera);
+    dlg->show();
 }

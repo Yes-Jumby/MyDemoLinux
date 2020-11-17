@@ -1,10 +1,55 @@
 ﻿#include "QtTreePropertyBrowserForCamera.h"
 #include <memory>
 CQtTreePropertyBrowserForCamera::CQtTreePropertyBrowserForCamera(/*CGrabberForCamera *pGrabberForCamera,*/QWidget *parent):
-    m_pGrabberForCamera(nullptr),QtTreePropertyBrowser(parent)
-{
+    m_pGrabberForCamera(nullptr),QtTreePropertyBrowser(parent) {
     m_count = 0;
+}
 
+void CQtTreePropertyBrowserForCamera::on_valueChanged(QtProperty *property, const QVariant &value)
+{
+    qDebug()<<"changed!"<<++m_count;
+    QString s = m_property_dic[property];
+    qDebug()<<s<<":"<<value;
+    if(s == "TriggerMode_TriggerSelector_LineStart") {
+        qDebug()<<"hello";
+        if(value.value<bool>()) {
+            //qDebug()<<"On";
+            m_pGrabberForCamera->SetParameter(s.toStdString(),"On");
+        } else {
+            //qDebug()<<"Off";
+            m_pGrabberForCamera->SetParameter(s.toStdString(),"Off");
+        }
+    }
+    if(s == "Height_RegionSelector_Region1") {
+        //qDebug()<<"hello";
+        qDebug()<<value.value<int>();
+        m_pGrabberForCamera->SetParameter(s.toStdString(),std::to_string(value.value<int>()));
+    }
+    if(s == "DeviceScanType") {
+        //qDebug()<<"hello";
+        if(value.value<int>()==0) {
+            //qDebug()<<"Linescan3D";
+            m_pGrabberForCamera->SetParameter(s.toStdString(),"Linescan3D");
+        } else {
+            //qDebug()<<"Areascan";
+            m_pGrabberForCamera->SetParameter(s.toStdString(),"Areascan");
+        }
+    }
+    qDebug()<<QString::fromStdString(m_pGrabberForCamera->GetParameter(s.toStdString()));
+
+}
+bool CQtTreePropertyBrowserForCamera::registerCameraPointer(CGrabberForCamera *pGrabberForCamera)
+{
+    if(pGrabberForCamera == nullptr) {
+        return false;
+    } else {
+        m_pGrabberForCamera = pGrabberForCamera;
+        init_();
+        return true;
+    }
+}
+void CQtTreePropertyBrowserForCamera::init_()
+{
     QtVariantPropertyManager *variantManager = new QtVariantPropertyManager();
     //std::shared_ptr<QtVariantPropertyManager> variantManager = std::make_shared<QtVariantPropertyManager>();
     QString strName;
@@ -16,21 +61,21 @@ CQtTreePropertyBrowserForCamera::CQtTreePropertyBrowserForCamera(/*CGrabberForCa
     //bool
     strName = "TriggerMode_TriggerSelector_LineStart";
     QtVariantProperty *item = variantManager->addProperty(QVariant::Bool, strName);
-    item->setValue(true);
+    //item->setValue(true);
+    item->setValue(m_pGrabberForCamera->GetParameter("TriggerMode_TriggerSelector_LineStart")=="On");
     cameraProperty->addSubProperty(item);
     m_property_dic[item] =strName;
 
     //int
     strName = "Height_RegionSelector_Region1";
     item = variantManager->addProperty(QVariant::Int, strName);
-    item->setValue(20);
+    //item->setValue(20);
+    item->setValue(atoi(m_pGrabberForCamera->GetParameter("Height_RegionSelector_Region1").c_str()));
     item->setAttribute(QLatin1String("minimum"), 0);
-    item->setAttribute(QLatin1String("maximum"), 100);
-    item->setAttribute(QLatin1String("singleStep"), 10);
+    item->setAttribute(QLatin1String("maximum"), 832);
+    item->setAttribute(QLatin1String("singleStep"), 1);
     cameraProperty->addSubProperty(item);
     m_property_dic[item] =strName;
-
-
 
     // enum
     strName = "DeviceScanType";
@@ -39,7 +84,12 @@ CQtTreePropertyBrowserForCamera::CQtTreePropertyBrowserForCamera(/*CGrabberForCa
     QStringList enumNames;
     enumNames << "Linescan3D" << "Areascan";
     item->setAttribute(QLatin1String("enumNames"), enumNames);
-    item->setValue(1);
+    //item->setValue(1);
+    if(m_pGrabberForCamera->GetParameter("DeviceScanType") == "Linescan3D") {
+        item->setValue(0);
+    } else {
+        item->setValue(1);
+    }
     cameraProperty->addSubProperty(item);
     m_property_dic[item] =strName;
 
@@ -55,47 +105,6 @@ CQtTreePropertyBrowserForCamera::CQtTreePropertyBrowserForCamera(/*CGrabberForCa
 
     connect(variantManager, SIGNAL(valueChanged(QtProperty *, const QVariant &)),
                 this, SLOT(on_valueChanged(QtProperty *, const QVariant &)));
-}
-
-void CQtTreePropertyBrowserForCamera::on_valueChanged(QtProperty *property, const QVariant &value)
-{
-    qDebug()<<"changed!"<<++m_count;
-    QString s =m_property_dic[property];
-        qDebug()<<s<<":"<<value;
-        if(s == "TriggerMode_TriggerSelector_LineStart") {
-            qDebug()<<"hello";
-            if(value.value<bool>()) {
-                qDebug()<<"On";
-                //m_pGrabberForCamera->SetParameter(s.toStdString(),"On");
-            } else {
-                qDebug()<<"Off";
-                //m_pGrabberForCamera->SetParameter(s.toStdString(),"Off");
-            }
-        }
-        if(s == "Height_RegionSelector_Region1") {
-            qDebug()<<"hello";
-            qDebug()<<value.value<int>();
-            //m_pGrabberForCamera->SetParameter(s.toStdString(),value.value<int>());
-        }
-        if(s == "DeviceScanType") {
-            qDebug()<<"hello";
-            if(value.value<int>()==0) {
-                qDebug()<<"Linescan3D";
-                //m_pGrabberForCamera->SetParameter(s.toStdString(),"Linescan3D");
-            } else {
-                qDebug()<<"Areascan";
-                //m_pGrabberForCamera->SetParameter(s.toStdString(),"Areascan");
-            }
-        }
-}
-bool CQtTreePropertyBrowserForCamera::registerPointer(CGrabberForCamera *pGrabberForCamera)
-{
-    if(pGrabberForCamera == nullptr) {
-        return false;
-    } else {
-        m_pGrabberForCamera = pGrabberForCamera;
-        return true;
-    }
 }
 //    item = variantManager->addProperty(QVariant::Double, QString::number(i++) + QLatin1String(" Double Property"));
 //    item->setValue(1.2345);

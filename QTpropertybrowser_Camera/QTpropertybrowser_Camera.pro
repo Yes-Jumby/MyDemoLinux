@@ -27,14 +27,17 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    QtTreePropertyBrowserForCamera.cpp
+    QtTreePropertyBrowserForCamera.cpp \
+    DlgSystemParam.cpp
 
 HEADERS += \
         mainwindow.h \
-    QtTreePropertyBrowserForCamera.h
+    QtTreePropertyBrowserForCamera.h \
+    DlgSystemParam.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    DlgSystemParam.ui
 
 INCLUDEPATH +=/opt/Qt5.12.0/include/QtPropertyBrowser
 LIBS += /opt/Qt5.12.0/lib/libQtPropertyBrowser.so

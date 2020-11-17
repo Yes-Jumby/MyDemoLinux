@@ -13,10 +13,11 @@ class CQtTreePropertyBrowserForCamera :public QtTreePropertyBrowser
     Q_OBJECT
 public:
     explicit CQtTreePropertyBrowserForCamera(/*CGrabberForCamera *pGrabberForCamera,*/QWidget *parent = nullptr);
-    bool registerPointer(CGrabberForCamera *pGrabberForCamera);
+    bool registerCameraPointer(CGrabberForCamera *pGrabberForCamera);
 private slots:
     void on_valueChanged(QtProperty *property, const QVariant &value);
 private:
+    void init_();
     int m_count;
     QMap<QtProperty*,QString>m_property_dic;
     CGrabberForCamera *m_pGrabberForCamera;
