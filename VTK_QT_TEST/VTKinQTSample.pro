@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2020-09-24T15:45:39
+# Project created by QtCreator 2017-12-13T14:25:05
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = StaticConfigClass
+TARGET = VTKinQTSample
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -22,18 +22,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
-    KDConfig.cpp
+        mainview.cpp
 
 HEADERS += \
-        mainwindow.h \
-    KDConfig.h
+        mainview.h
 
 FORMS += \
-        mainwindow.ui
+        mainview.ui
 
-#LIBS +=  /usr/local/lib/libopencv_core.so
+INCLUDEPATH += /usr/local/include/vtk-7.1
+LIBS += /usr/local/lib/libvtkGUISupportQt-7.1.so
+#LIBS += /usr/local/lib/libvtkRenderingOpenGL2-7.1.so
+LIBS += /usr/local/lib/libvtkInteractionStyle-7.1.so
+LIBS += /usr/local/lib/libvtkCommonCore-7.1.so
+LIBS += /usr/local/lib/libvtk*.so

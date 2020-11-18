@@ -1,11 +1,8 @@
 ﻿#include "pointCloudRender.h"
 
-
-
-
 VTK_MODULE_INIT(vtkRenderingOpenGL2); //非cmake生成的工程需添加
 VTK_MODULE_INIT(vtkRenderingFreeType);
-
+VTK_MODULE_INIT(vtkInteractionStyle) ;
 
 class PointPickerInteractorStyle : public vtkInteractorStyleTrackballCamera
 {
@@ -49,7 +46,7 @@ bool PointCloudRender::LoadPoints(const float * pts,const size_t iSize)
     float *ptemp = new float[iSize*3];
     memcpy(ptemp,pts,sizeof(float)*iSize*3);
     m_points->Resize(0);
-    if (iSize < 0)  return false;
+    if (iSize == 0)  return false;
     m_low_z = std::numeric_limits<float>::max();
     m_high_z = std::numeric_limits<float>::lowest();
 
@@ -238,6 +235,7 @@ void PointCloudRender::ViewDirection(vtkRenderer *renderer,
     renderer->GetActiveCamera()->SetFocalPoint(lookX, lookY, lookZ);    //焦点位置
     renderer->GetActiveCamera()->SetViewUp(upX, upY, upZ);    //朝上方向
     renderer->ResetCamera();
+    m_renderer->GetActiveCamera()->Zoom(1.5);
 }
 
 void PointCloudRender::ViewPositiveX(vtkRenderer *renderer)

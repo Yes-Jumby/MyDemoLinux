@@ -17,7 +17,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     redis_list_protobuf.cpp \
-    xyzfour/model.pb.cc
+    xyzfour/model.pb.cc \
+    imu/imu_result.pb.cc \
+    main.cpp \
+    redis_imu.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -25,7 +28,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    xyzfour/model.pb.h
+    xyzfour/model.pb.h \
+    imu/imu_result.pb.h
 
 LIBS +=  -lprotobuf
 LIBS +=  -lhiredis

@@ -1,22 +1,24 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "ConfigForKDVisualInspect.h"
+#include "KDConfig.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    CConfigForKDVisualInspect::setParameterFile("/home/ubuntu/Documents/work/MyDemoLinux/StaticConfigClass/default.yaml");
-    float fx_ = CConfigForKDVisualInspect::get<float>("camera.fx");
-    std::cout<<"fx_"<<fx_<<endl;
-    std::string path_ = CConfigForKDVisualInspect::get<std::string>("dataset_dir");
-    std::cout<<"path_"<<path_<<endl;
 
-
-    cv::FileStorage file_write_;
-    file_write_.open("/home/ubuntu/Documents/work/MyDemoLinux/StaticConfigClass/default-default.yaml", cv::FileStorage::WRITE);
-    file_write_<<"MYMAXTRIS"<<cv::Mat::eye(3,3,CV_8UC1);
-    file_write_.release();
+    CKDConfig::setParameterFile("../../hello1.ini");
+    std::cout<<"a:"<<CKDConfig::getValue<int>("a")<<std::endl;
+    std::cout<<"b:"<<CKDConfig::getValue<int>("b")<<std::endl;
+    std::cout<<"c:"<<CKDConfig::getValue<QString>("c").toStdString()<<std::endl;
+    CKDConfig::setValue("a",1900);
+    CKDConfig::setValue("b",2000);
+    CKDConfig::setValue("c","192.168.122.122");
+    std::cout<<"a:"<<CKDConfig::getValue<int>("a")<<std::endl;
+    std::cout<<"b:"<<CKDConfig::getValue<int>("b")<<std::endl;
+    std::cout<<"c:"<<CKDConfig::getValue<QString>("c").toStdString()<<std::endl;
+//    std::cout<<"a:"<<typeid(int).name()<<" "<<(QString(typeid(int).name()) == "i")<<std::endl;
+//    std::cout<<"a:"<<typeid(QString).name()<<" "<<(QString(typeid(QString).name()) == "7QString")<<std::endl;
 }
 
 MainWindow::~MainWindow()

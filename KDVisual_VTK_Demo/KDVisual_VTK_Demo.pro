@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2020-09-24T15:45:39
+# Project created by QtCreator 2020-10-13T13:44:51
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = StaticConfigClass
+TARGET = KDVisual_VTK_Demo
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -27,13 +27,20 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    KDConfig.cpp
+    pointCloudRender.cpp
 
 HEADERS += \
         mainwindow.h \
-    KDConfig.h
+    pointCloudRender.h
 
 FORMS += \
         mainwindow.ui
 
-#LIBS +=  /usr/local/lib/libopencv_core.so
+LIBS +=  -lglog
+
+INCLUDEPATH += /usr/local/include/vtk-7.1
+LIBS += /usr/local/lib/libvtkGUISupportQt-7.1.so
+#LIBS += /usr/local/lib/libvtkRenderingOpenGL2-7.1.so
+LIBS += /usr/local/lib/libvtkInteractionStyle-7.1.so
+LIBS += /usr/local/lib/libvtkCommonCore-7.1.so
+LIBS += /usr/local/lib/libvtk*.so

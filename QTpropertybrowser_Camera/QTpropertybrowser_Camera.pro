@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2020-09-24T15:45:39
+# Project created by QtCreator 2020-10-22T18:46:41
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = StaticConfigClass
+TARGET = QTpropertybrowser
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -27,13 +27,22 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    KDConfig.cpp
+    QtTreePropertyBrowserForCamera.cpp \
+    DlgSystemParam.cpp
 
 HEADERS += \
         mainwindow.h \
-    KDConfig.h
+    QtTreePropertyBrowserForCamera.h \
+    DlgSystemParam.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    DlgSystemParam.ui
 
-#LIBS +=  /usr/local/lib/libopencv_core.so
+INCLUDEPATH +=/opt/Qt5.12.0/include/QtPropertyBrowser
+LIBS += /opt/Qt5.12.0/lib/libQtPropertyBrowser.so
+
+
+INCLUDEPATH += $$PWD/../../KDVisualInspect/Lib/ubuntu-x64/Inc
+#DEPENDPATH += $$PWD/../Lib/ubuntu-x64/Inc
+LIBS += -L$$PWD/../../KDVisualInspect/Lib/ubuntu-x64/Bin/ -lGrabberForCamera

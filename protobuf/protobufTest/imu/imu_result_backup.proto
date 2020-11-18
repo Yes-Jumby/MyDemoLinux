@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package protodata;
+
+message imu_result{
+
+    double R11 = 1;
+    double R12 = 2;
+    double R13 = 3;
+    double R21 = 4;
+    double R22 = 5;
+    double R23 = 6;
+    double R31 = 7;
+    double R32 = 8;
+    double R33 = 9;
+
+    double dx = 10;
+    double dy = 11;
+    double dz = 12;
+
+    float time_stamp = 13;
+}
+

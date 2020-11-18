@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2020-09-24T15:45:39
+# Project created by QtCreator 2020-10-13T17:41:43
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = StaticConfigClass
+TARGET = MultiParameterInQSlots
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -26,14 +26,15 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
-    KDConfig.cpp
+        mainwindow.cpp
 
 HEADERS += \
-        mainwindow.h \
-    KDConfig.h
+        mainwindow.h
 
 FORMS += \
         mainwindow.ui
 
-#LIBS +=  /usr/local/lib/libopencv_core.so
+# Default rules for deployment.
+qnx: target.path = /tmp/$${TARGET}/bin
+else: unix:!android: target.path = /opt/$${TARGET}/bin
+!isEmpty(target.path): INSTALLS += target
