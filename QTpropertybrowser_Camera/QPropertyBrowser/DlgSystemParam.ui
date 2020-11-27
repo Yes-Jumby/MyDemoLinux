@@ -41,7 +41,7 @@
   <customwidget>
    <class>CQtTreePropertyBrowserForCamera</class>
    <extends>QWidget</extends>
-   <header>/home/innovation-2/Documents/Ranger3/MyDemoLinux/QTpropertybrowser_Camera/QtTreePropertyBrowserForCamera.h</header>
+   <header>./QPropertyBrowser/QtTreePropertyBrowserForCamera.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

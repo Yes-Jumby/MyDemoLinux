@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QDate>
 #include <QDebug>
-#include "DlgSystemParam.h"
+#include "QPropertyBrowser/DlgSystemParam.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -155,6 +155,8 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug()<<QString("main:: Frame lost:%1").arg(100);
         qDebug()<<"size of cloud3d:"<<sizeof(Cloud3D);
 
+        CKDConfig::setParameterFile("../../KDVisualInspect/Config/SystemConfig.ini");
+
         m_pGrabberForCamera = new CGrabberForCamera();
         s_GrabberInitParam sGrabberInitParam;
     //    sGrabberInitParam.iImageWidth = m_iImageWidth;
@@ -166,7 +168,7 @@ MainWindow::MainWindow(QWidget *parent) :
         sGrabberInitParam.isWriteLOG = false;
         sGrabberInitParam.isUsingEncoder = false;
 
-        sGrabberInitParam.strDeviceIPorMAC = "192.168.1.91";"192.168.1.91";"169.254.44.197";;
+        sGrabberInitParam.strDeviceIPorMAC = "169.254.221.118";"192.168.1.91";"169.254.44.197";;
         sGrabberInitParam.isUsingIP = true;
         sGrabberInitParam.strCSVFilesPath = "../../KDVisualInspect/Config/Camera3D.csv";
         sGrabberInitParam.strCalibXMLPath = "../../KDVisualInspect/Config/CalibrationResult.json";
@@ -180,7 +182,7 @@ MainWindow::MainWindow(QWidget *parent) :
         //sGrabberInitParam.pCallBackFunc = std::bind(&MainWindow::ImgCallBack,this,_1);
         m_pGrabberForCamera->Init(sGrabberInitParam);
 
-        //ui->widget_camera->registerCameraPointer(m_pGrabberForCamera);
+        ui->widget_camera->registerCameraPointer(m_pGrabberForCamera);
 }
 
 MainWindow::~MainWindow()

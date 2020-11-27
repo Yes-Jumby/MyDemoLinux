@@ -6,7 +6,7 @@
 #include "qtpropertymanager.h"
 #include "qtvariantproperty.h"
 #include "qttreepropertybrowser.h"
-#include "QtTreePropertyBrowserForCamera.h"
+#include "QPropertyBrowser/QtTreePropertyBrowserForCamera.h"
 #include <QMap>
 namespace Ui {
 class MainWindow;

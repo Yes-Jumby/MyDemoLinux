@@ -35,7 +35,35 @@ void CQtTreePropertyBrowserForCamera::on_valueChanged(QtProperty *property, cons
             m_pGrabberForCamera->SetParameter(s.toStdString(),"Areascan");
         }
     }
+    if(s == "EncoderOutputMode") {
+        //qDebug()<<"hello";
+        if(value.value<int>()==0) {
+            //qDebug()<<"PositionUp";
+            m_pGrabberForCamera->SetParameter(s.toStdString(),"PositionUp");
+        } else {
+            //qDebug()<<"PositionDown";
+            m_pGrabberForCamera->SetParameter(s.toStdString(),"PositionDown");
+        }
+    }
+    if(s == "ExposureTime") {
+        //qDebug()<<"hello";
+        qDebug()<<value.value<int>();
+        m_pGrabberForCamera->SetParameter("ExposureTime_RegionSelector_Region0",std::to_string(value.value<int>()));
+        m_pGrabberForCamera->SetParameter("ExposureTime_RegionSelector_Region1",std::to_string(value.value<int>()));
+    }
     qDebug()<<QString::fromStdString(m_pGrabberForCamera->GetParameter(s.toStdString()));
+
+    if(s == "IMU_USE_IN_SYSTEM") {
+        //qDebug()<<"hello";
+        if(value.value<bool>()) {
+            //qDebug()<<"On";
+            CKDConfig::setValue("UsingIMU",true);
+        } else {
+            //qDebug()<<"Off";
+            CKDConfig::setValue("UsingIMU",false);
+        }
+    }
+
 
 }
 bool CQtTreePropertyBrowserForCamera::registerCameraPointer(CGrabberForCamera *pGrabberForCamera)
@@ -58,9 +86,41 @@ void CQtTreePropertyBrowserForCamera::init_()
     QtProperty *cameraProperty = variantManager->addProperty(QtVariantPropertyManager::groupTypeId(),
                                                       QLatin1String("Camera Property"));
 
+    // enum
+    strName = "DeviceScanType";
+    QtVariantProperty *item = variantManager->addProperty(QtVariantPropertyManager::enumTypeId(),
+                    strName);
+    QStringList enumNames;
+    enumNames << "Linescan3D" << "Areascan";
+    item->setAttribute(QLatin1String("enumNames"), enumNames);
+    //item->setValue(1);
+    if(m_pGrabberForCamera->GetParameter("DeviceScanType") == "Linescan3D") {
+        item->setValue(0);
+    } else {
+        item->setValue(1);
+    }
+    cameraProperty->addSubProperty(item);
+    m_property_dic[item] =strName;
+
+    // enum
+    strName = "EncoderOutputMode";
+    item = variantManager->addProperty(QtVariantPropertyManager::enumTypeId(),
+                    strName);
+    QStringList enumNames1;
+    enumNames1 << "PositionUp" << "PositionDown";
+    item->setAttribute(QLatin1String("enumNames"), enumNames1);
+    //item->setValue(1);
+    if(m_pGrabberForCamera->GetParameter("EncoderOutputMode") == "PositionUp") {
+        item->setValue(0);
+    } else {
+        item->setValue(1);
+    }
+    cameraProperty->addSubProperty(item);
+    m_property_dic[item] =strName;
+
     //bool
     strName = "TriggerMode_TriggerSelector_LineStart";
-    QtVariantProperty *item = variantManager->addProperty(QVariant::Bool, strName);
+    item = variantManager->addProperty(QVariant::Bool, strName);
     //item->setValue(true);
     item->setValue(m_pGrabberForCamera->GetParameter("TriggerMode_TriggerSelector_LineStart")=="On");
     cameraProperty->addSubProperty(item);
@@ -77,24 +137,28 @@ void CQtTreePropertyBrowserForCamera::init_()
     cameraProperty->addSubProperty(item);
     m_property_dic[item] =strName;
 
-    // enum
-    strName = "DeviceScanType";
-    item = variantManager->addProperty(QtVariantPropertyManager::enumTypeId(),
-                    strName);
-    QStringList enumNames;
-    enumNames << "Linescan3D" << "Areascan";
-    item->setAttribute(QLatin1String("enumNames"), enumNames);
-    //item->setValue(1);
-    if(m_pGrabberForCamera->GetParameter("DeviceScanType") == "Linescan3D") {
-        item->setValue(0);
-    } else {
-        item->setValue(1);
-    }
+    //bool
+    strName = "IMU_USE_IN_SYSTEM";
+    item = variantManager->addProperty(QVariant::Bool, strName);
+    //item->setValue(true);
+    item->setValue(CKDConfig::getValue<bool>("UsingIMU"));
+    cameraProperty->addSubProperty(item);
+    m_property_dic[item] =strName;
+    //int
+    strName = "ExposureTime";
+    item = variantManager->addProperty(QVariant::Int, strName);
+    //item->setValue(20);
+    item->setValue(atoi(m_pGrabberForCamera->GetParameter("ExposureTime_RegionSelector_Region0").c_str()));
+//    item->setAttribute(QLatin1String("minimum"), 0);
+//    item->setAttribute(QLatin1String("maximum"), 30000);
+//    item->setAttribute(QLatin1String("singleStep"), 1);
     cameraProperty->addSubProperty(item);
     m_property_dic[item] =strName;
 
-    QtVariantEditorFactory *variantFactory = new QtVariantEditorFactory();
 
+
+
+    QtVariantEditorFactory *variantFactory = new QtVariantEditorFactory();
     QtTreePropertyBrowser *variantEditor = this;
     variantEditor->setFactoryForManager(variantManager, variantFactory);
     variantEditor->addProperty(cameraProperty);

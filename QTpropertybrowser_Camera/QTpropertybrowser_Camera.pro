@@ -25,19 +25,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        QConfig/KDConfig.cpp \
         main.cpp \
         mainwindow.cpp \
-    QtTreePropertyBrowserForCamera.cpp \
-    DlgSystemParam.cpp
+    QPropertyBrowser/QtTreePropertyBrowserForCamera.cpp \
+    QPropertyBrowser/DlgSystemParam.cpp
 
 HEADERS += \
+        QConfig/KDConfig.h \
         mainwindow.h \
-    QtTreePropertyBrowserForCamera.h \
-    DlgSystemParam.h
+    QPropertyBrowser/QtTreePropertyBrowserForCamera.h \
+    QPropertyBrowser/DlgSystemParam.h
 
 FORMS += \
         mainwindow.ui \
-    DlgSystemParam.ui
+    QPropertyBrowser/DlgSystemParam.ui
 
 INCLUDEPATH +=/opt/Qt5.12.0/include/QtPropertyBrowser
 LIBS += /opt/Qt5.12.0/lib/libQtPropertyBrowser.so

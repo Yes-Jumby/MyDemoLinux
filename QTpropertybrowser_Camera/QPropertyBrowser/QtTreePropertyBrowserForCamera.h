@@ -6,6 +6,7 @@
 #include "qtvariantproperty.h"
 #include "qttreepropertybrowser.h"
 #include "GrabberForCamera.h"
+#include "QConfig/KDConfig.h"
 #include <QMap>
 #include <QDebug>
 class CQtTreePropertyBrowserForCamera :public QtTreePropertyBrowser

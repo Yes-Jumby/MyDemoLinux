@@ -71,15 +71,15 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>QtTreePropertyBrowser</class>
+   <class>CQtTreePropertyBrowserForCamera</class>
    <extends>QWidget</extends>
-   <header>/opt/Qt5.12.0/include/QtPropertyBrowser/qttreepropertybrowser.h</header>
+   <header>./QPropertyBrowser/QtTreePropertyBrowserForCamera.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>CQtTreePropertyBrowserForCamera</class>
+   <class>QtTreePropertyBrowser</class>
    <extends>QWidget</extends>
-   <header>/home/innovation-2/Documents/Ranger3/MyDemoLinux/QTpropertybrowser_Camera/QtTreePropertyBrowserForCamera.h</header>
+   <header>/opt/Qt5.12.0/include/QtPropertyBrowser/qttreepropertybrowser.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
